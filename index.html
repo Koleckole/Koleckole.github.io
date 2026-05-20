@@ -436,6 +436,95 @@
       .edu-card, .exp-card, .hockey-card { flex-direction: column; gap: 1rem; }
       .facts-grid { grid-template-columns: 1fr 1fr; }
     }
+
+    /* ── SERVICES ── */
+    .services-intro { font-size: 15px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1.75rem; }
+    .services-intro span { color: var(--navy); font-weight: 500; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 1.5rem; }
+
+    .service-card {
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.55);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: 1.5rem 1.25rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .service-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    .service-icon {
+      width: 42px; height: 42px; border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem; font-size: 20px;
+    }
+
+    .si-navy  { background: var(--navy); }
+    .si-amber { background: rgba(232,160,69,0.15); }
+    .si-teal  { background: rgba(20,160,120,0.12); }
+    .si-slate { background: rgba(80,100,130,0.12); }
+    .si-purple{ background: rgba(120,80,180,0.1); }
+    .si-green { background: rgba(20,160,80,0.1); }
+
+    .service-card h3 { font-size: 14px; font-weight: 500; color: var(--navy); margin-bottom: 0.4rem; line-height: 1.3; }
+    .service-card p  { font-size: 12.5px; color: var(--text-secondary); line-height: 1.65; }
+
+    .services-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .services-cta {
+      background: var(--navy);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      display: flex; flex-direction: column; justify-content: space-between; gap: 1rem;
+    }
+
+    .services-cta h3 { font-size: 16px; font-weight: 500; color: var(--white); line-height: 1.4; }
+    .services-cta p  { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.65; }
+
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--accent); color: var(--navy);
+      font-size: 13px; font-weight: 600;
+      padding: 10px 18px; border-radius: var(--radius);
+      text-decoration: none; align-self: flex-start;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.01em;
+    }
+
+    .cta-btn:hover { background: var(--accent-light); transform: translateY(-1px); }
+    .cta-btn svg { width: 14px; height: 14px; }
+
+    .services-example {
+      background: rgba(255,255,255,0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.55);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      padding: 1.75rem;
+      display: flex; flex-direction: column; justify-content: space-between; gap: 0.75rem;
+    }
+
+    .services-example h3 { font-size: 14px; font-weight: 500; color: var(--navy); margin-bottom: 0.25rem; }
+    .services-example p  { font-size: 13px; color: var(--text-secondary); line-height: 1.65; flex: 1; }
+
+    .example-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12.5px; font-weight: 500; color: var(--navy);
+      text-decoration: none; border-bottom: 1px solid rgba(26,35,50,0.2);
+      padding-bottom: 1px; transition: color 0.2s, border-color 0.2s; align-self: flex-start;
+    }
+
+    .example-link:hover { color: #8a5a10; border-color: var(--accent); }
+    .example-link svg { width: 12px; height: 12px; }
+
+    @media (max-width: 640px) {
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .services-bottom { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -449,7 +538,7 @@
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#services">Services</a></li><li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
@@ -743,6 +832,89 @@
           </div>
           <h3>Athletics Photography & Social Media</h3>
           <p>Team photo sessions, editing in Photoshop and Lightroom, and social media content across multiple UJ sports programs — building consistent visual branding for campus athletics.</p>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- SERVICES -->
+    <div class="section" id="services">
+      <div class="section-header">
+        <span class="section-label">Web Design Services</span>
+        <div class="section-line"></div>
+      </div>
+
+      <p class="services-intro">
+        I build <span>clean, fast, and purposeful websites</span> for businesses, events, and organizations —
+        from scratch or as a redesign of something that's already live. Every site I build is responsive,
+        easy to navigate, and designed to actually work for the people who use it.
+        My work on <span>innovationhomeshow.ca</span> is a real example of what I deliver: a full commercial platform
+        with ticketing, an exhibitor directory, integrated payments, and a live schedule — built entirely by hand.
+      </p>
+
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="service-icon si-navy">🌐</div>
+          <h3>Full Website Builds</h3>
+          <p>Built from scratch using HTML, CSS, and JavaScript. No bloated page builders — clean code, fast load times, and full ownership for you.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon si-amber">🔄</div>
+          <h3>Redesigns & Refreshes</h3>
+          <p>Got a site that looks outdated or isn't converting? I'll modernize the layout, improve navigation, and give it a look that actually reflects your brand.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon si-teal">📱</div>
+          <h3>Responsive Design</h3>
+          <p>Every site I build looks great on phones, tablets, and desktops. Mobile-first isn't an afterthought — it's baked in from the start.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon si-slate">🎟️</div>
+          <h3>Event & Trade Show Sites</h3>
+          <p>Schedules, ticketing, exhibitor directories, contact forms — I've built it all for a live event. Perfect for shows, expos, and tournaments.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon si-purple">🏢</div>
+          <h3>Small Business Sites</h3>
+          <p>Service pages, photo galleries, contact forms, and Google Maps — everything a local business needs to look professional and get found online.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon si-green">🏒</div>
+          <h3>Sports & Org Sites</h3>
+          <p>Rosters, schedules, photo galleries, and sponsor pages. I understand sports organizations from the inside — four years of college hockey taught me that.</p>
+        </div>
+
+      </div>
+
+      <div class="services-bottom">
+
+        <div class="services-cta">
+          <div>
+            <h3>Ready to build something?</h3>
+            <p>Whether you need a brand-new site or a refresh of what you've got, reach out and let's talk about what you're looking for. Pricing depends on scope — contact me for a quote.</p>
+          </div>
+          <a class="cta-btn" href="mailto:Kolechristensson14@gmail.com">
+            Get in touch
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+
+        <div class="services-example">
+          <div>
+            <h3>See my work in action</h3>
+            <p>Innovation Home Show is a full commercial event platform I built from scratch — ticketing, exhibitor directory, QuickBooks payments, multi-day schedule, and a video background hero. This is the standard I hold myself to.</p>
+          </div>
+          <a class="example-link" href="https://innovationhomeshow.ca/" target="_blank" rel="noopener noreferrer">
+            Visit innovationhomeshow.ca
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
         </div>
 
       </div>
