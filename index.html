@@ -525,6 +525,85 @@
       .services-grid { grid-template-columns: 1fr 1fr; }
       .services-bottom { grid-template-columns: 1fr; }
     }
+
+    /* ── HOW I WORK ── */
+    .process-wrap { margin-bottom: 1.75rem; }
+    .process-steps { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 0; position: relative; margin-bottom: 1.25rem; }
+
+    .process-step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 0.75rem; position: relative; }
+
+    .process-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 27px;
+      left: calc(50% + 28px);
+      right: calc(-50% + 28px);
+      height: 1px;
+      background: var(--border);
+      z-index: 0;
+    }
+
+    .process-icon {
+      width: 54px; height: 54px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 1;
+      margin-bottom: 1rem; flex-shrink: 0;
+      font-size: 22px;
+    }
+
+    .pi-1 { background: rgba(26,95,165,0.1); color: #185FA5; border: 1px solid rgba(26,95,165,0.2); }
+    .pi-2 { background: rgba(59,109,17,0.1); color: #3B6D11; border: 1px solid rgba(59,109,17,0.2); }
+    .pi-3 { background: rgba(99,56,6,0.1);  color: #633806; border: 1px solid rgba(99,56,6,0.2); }
+    .pi-4 { background: rgba(8,80,65,0.1);  color: #085041; border: 1px solid rgba(8,80,65,0.2); }
+
+    .process-step-num { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+    .process-step-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .process-step-desc { font-size: 12.5px; color: var(--text-secondary); line-height: 1.6; }
+
+    .process-deliverables { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 8px; margin-bottom: 1.25rem; }
+
+    .process-del {
+      background: rgba(255,255,255,0.55);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.45);
+      border-radius: var(--radius);
+      padding: 0.85rem 1rem;
+    }
+
+    .process-del-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+
+    .process-del-item { font-size: 12px; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+    .process-del-item svg { width: 12px; height: 12px; color: var(--accent); flex-shrink: 0; }
+
+    .process-timeline {
+      background: var(--navy);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+
+    .process-tl-text { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+    .process-tl-text strong { color: var(--white); font-weight: 500; }
+
+    .process-tl-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12.5px; font-weight: 600;
+      padding: 8px 16px; border-radius: var(--radius);
+      background: var(--accent); color: var(--navy);
+      text-decoration: none; white-space: nowrap; flex-shrink: 0;
+      transition: background 0.2s;
+    }
+
+    .process-tl-btn:hover { background: var(--accent-light); }
+    .process-tl-btn svg { width: 14px; height: 14px; }
+
+    @media (max-width: 640px) {
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .process-step:not(:last-child)::after { display: none; }
+      .process-deliverables { grid-template-columns: 1fr 1fr; }
+      .process-timeline { flex-direction: column; align-items: flex-start; }
+    }
   </style>
 </head>
 <body>
@@ -891,6 +970,88 @@
           <p>Rosters, schedules, photo galleries, and sponsor pages. I understand sports organizations from the inside — four years of college hockey taught me that.</p>
         </div>
 
+      </div>
+
+
+      <!-- HOW I WORK -->
+      <div class="process-wrap">
+        <div class="section-header" style="margin-bottom:1.5rem;">
+          <span class="section-label">How I work</span>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="process-icon pi-1">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+            </div>
+            <div class="process-step-num">Step 01</div>
+            <div class="process-step-title">Discovery</div>
+            <div class="process-step-desc">We talk about your goals, audience, and what you actually need. I ask the right questions so nothing gets built twice.</div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-icon pi-2">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+            </div>
+            <div class="process-step-num">Step 02</div>
+            <div class="process-step-title">Design</div>
+            <div class="process-step-desc">Layout, colours, and structure mapped out before a single line of code is written. You see it before I build it.</div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-icon pi-3">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+            </div>
+            <div class="process-step-num">Step 03</div>
+            <div class="process-step-title">Build</div>
+            <div class="process-step-desc">Clean, hand-written HTML, CSS, and JavaScript. Responsive from day one — looks great on every screen size.</div>
+          </div>
+
+          <div class="process-step">
+            <div class="process-icon pi-4">
+              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z"/></svg>
+            </div>
+            <div class="process-step-num">Step 04</div>
+            <div class="process-step-title">Launch</div>
+            <div class="process-step-desc">Your site goes live. I handle deployment, do a full QA pass, and make sure everything works before handing over.</div>
+          </div>
+        </div>
+
+        <div class="process-deliverables">
+          <div class="process-del">
+            <div class="process-del-label">Discovery</div>
+            <div class="process-del-item"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Goals brief</div>
+            <div class="process-del-item"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Scope & timeline</div>
+            <div class="process-del-item"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Quote</div>
+          </div>
+          <div class="process-del">
+            <div class="process-del-label">Design</div>
+            <div class="process-del-item"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Layout mockup</div>
+            <div class="process-del-item"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Colour & type</div>
+            <div class="process-del-item"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Your approval</div>
+          </div>
+          <div class="process-del">
+            <div class="process-del-label">Build</div>
+            <div class="process-del-item"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Responsive site</div>
+            <div class="process-del-item"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Review rounds</div>
+            <div class="process-del-item"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Final sign-off</div>
+          </div>
+          <div class="process-del">
+            <div class="process-del-label">Launch</div>
+            <div class="process-del-item"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Deployment</div>
+            <div class="process-del-item"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Full QA pass</div>
+            <div class="process-del-item"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Handover</div>
+          </div>
+        </div>
+
+        <div class="process-timeline">
+          <div class="process-tl-text">Most projects go from first conversation to live site in <strong>2–4 weeks</strong>, depending on scope.</div>
+          <a class="process-tl-btn" href="mailto:Kolechristensson14@gmail.com">
+            Get a quote
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
       </div>
 
       <div class="services-bottom">
