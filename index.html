@@ -136,11 +136,11 @@
     .hero-right { flex-shrink: 0; display: flex; align-items: flex-start; padding-top: 0.25rem; }
 
     .hero-photo {
-      width: 210px; height: 265px;
+      width: 185px; height: 235px;
       object-fit: cover; object-position: center 15%;
       border-radius: 120px;
-      border: 3px solid rgba(232,200,122,0.5);
-      box-shadow: 0 0 0 8px rgba(232,200,122,0.08), 0 12px 32px rgba(0,0,0,0.35);
+      border: 2px solid rgba(232,200,122,0.5);
+      box-shadow: 0 0 0 6px rgba(232,200,122,0.07), 0 10px 28px rgba(0,0,0,0.3);
       opacity: 0; animation: fadeUp 0.6s ease 0.25s forwards;
     }
 
@@ -960,17 +960,19 @@
     const canvas = document.getElementById('bg-canvas');
     const ctx = canvas.getContext('2d');
     let W, H, dpr, mouse = { x: -9999, y: -9999 };
+    let time = 0;
 
-    const PARTICLE_COUNT = 90;
-    const CONNECTION_DIST = 140;
-    const PARTICLE_SPEED = 0.35;
-    const DOT_RADIUS = 2.2;
+    const PARTICLE_COUNT = 110;
+    const CONNECTION_DIST = 155;
+    const DOT_RADIUS = 2.5;
 
     const COLORS = [
-      'rgba(26, 48, 40,',
-      'rgba(232,200,122,',
-      'rgba(26,80,60,',
-      'rgba(60,100,80,',
+      'rgba(80, 120, 160,',   // dusty blue
+      'rgba(100, 140, 170,',  // soft steel blue
+      'rgba(70, 110, 130,',   // muted teal-blue
+      'rgba(90, 140, 120,',   // sage green
+      'rgba(60, 100, 90,',    // cool sage
+      'rgba(110, 150, 140,',  // dusty sage
     ];
 
     let particles = [];
@@ -992,46 +994,61 @@
     function initParticles() {
       particles = [];
       for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const speed = randBetween(0.18, 0.55);
         particles.push({
           x: randBetween(0, W),
           y: randBetween(0, H),
-          vx: randBetween(-PARTICLE_SPEED, PARTICLE_SPEED),
-          vy: randBetween(-PARTICLE_SPEED, PARTICLE_SPEED),
+          vx: randBetween(-speed, speed),
+          vy: randBetween(-speed, speed),
           r: randBetween(1.2, DOT_RADIUS),
           color: COLORS[Math.floor(Math.random() * COLORS.length)],
-          baseAlpha: randBetween(0.25, 0.55),
+          baseAlpha: randBetween(0.2, 0.6),
+          // gentle sine drift
+          driftAmp: randBetween(0.1, 0.4),
+          driftFreq: randBetween(0.004, 0.012),
+          driftOffset: randBetween(0, Math.PI * 2),
+          // pulsing size
+          pulseFreq: randBetween(0.008, 0.02),
+          pulseOffset: randBetween(0, Math.PI * 2),
         });
       }
     }
 
     function draw() {
+      time++;
+
       ctx.fillStyle = '#f5f2ea';
       ctx.fillRect(0, 0, W, H);
 
+      // Update particles with gentle sine drift
       for (const p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
+        p.x += p.vx + Math.sin(time * p.driftFreq + p.driftOffset) * p.driftAmp;
+        p.y += p.vy + Math.cos(time * p.driftFreq * 0.7 + p.driftOffset) * p.driftAmp;
         if (p.x < 0 || p.x > W) p.vx *= -1;
         if (p.y < 0 || p.y > H) p.vy *= -1;
       }
 
+      // Draw connections + mouse lines
       for (let i = 0; i < particles.length; i++) {
         const a = particles[i];
+
+        // Mouse interaction — slightly wider pull radius
         const mDist = Math.hypot(a.x - mouse.x, a.y - mouse.y);
-        if (mDist < CONNECTION_DIST * 1.4) {
-          const alpha = (1 - mDist / (CONNECTION_DIST * 1.4)) * 0.35;
+        if (mDist < CONNECTION_DIST * 1.6) {
+          const alpha = (1 - mDist / (CONNECTION_DIST * 1.6)) * 0.45;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(mouse.x, mouse.y);
           ctx.strokeStyle = `rgba(232,200,122,${alpha})`;
-          ctx.lineWidth = 1;
+          ctx.lineWidth = 1.2;
           ctx.stroke();
         }
+
         for (let j = i + 1; j < particles.length; j++) {
           const b = particles[j];
           const dist = Math.hypot(a.x - b.x, a.y - b.y);
           if (dist < CONNECTION_DIST) {
-            const alpha = (1 - dist / CONNECTION_DIST) * 0.18;
+            const alpha = (1 - dist / CONNECTION_DIST) * 0.22;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
@@ -1042,10 +1059,13 @@
         }
       }
 
+      // Draw dots with gentle pulse
       for (const p of particles) {
+        const pulse = 1 + Math.sin(time * p.pulseFreq + p.pulseOffset) * 0.3;
+        const alpha = p.baseAlpha * (0.85 + Math.sin(time * p.pulseFreq + p.pulseOffset) * 0.15);
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `${p.color}${p.baseAlpha})`;
+        ctx.arc(p.x, p.y, p.r * pulse, 0, Math.PI * 2);
+        ctx.fillStyle = `${p.color}${alpha})`;
         ctx.fill();
       }
 
